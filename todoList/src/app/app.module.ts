@@ -1,18 +1,24 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms'; // Required for ngModel
-import { CommonModule } from '@angular/common'; // Required for ngClass
-
+import { FormsModule } from '@angular/forms';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { environment } from './environments/environment';
 import { AppComponent } from './app.component';
+import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
 
 @NgModule({
   declarations: [AppComponent],
+  bootstrap: [AppComponent],
   imports: [
     BrowserModule,
-    FormsModule, // Make sure FormsModule is imported
-    CommonModule, // Make sure CommonModule is imported
+    RouterOutlet,
+    FormsModule,
+    CommonModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule
   ],
-  providers: [],
-  bootstrap: [AppComponent],
+  providers: []
 })
 export class AppModule {}
